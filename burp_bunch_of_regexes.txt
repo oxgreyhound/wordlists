@@ -1,0 +1,357 @@
+#PHP
+(?i)(?:Parse error|Fatal error|Warning|Notice|Deprecated|Strict Standards|Catchable fatal error|Uncaught .*Exception|Allowed memory size|Maximum execution time|Division by zero|Headers already sent|Call to undefined function|Call to undefined method)
+(?i)(?:You have an error in your SQL syntax|SQLSTATE\[[0-9A-Z]+\]:|mysqli_\w+\(\):|mysql_\w+\(\):)
+(?i)Undefined (?:index|offset):\s*['"]?[^'"\s]+['"]?
+(?:Fatal error: Uncaught|Uncaught exception|PHP Fatal error|PHP Parse error|Call to undefined function)
+Parse error:\s*.+? in \S+ on line \d+
+PHP Fatal error:\s*.+? in \S+ on line \d+
+Uncaught \w+(?:Exception|Error):\s*.+? in \S+ on line \d+
+Warning:\s*require_once\(.+?\): failed to open stream
+#MySQL/mariaDB
+(?i)(?:You have an error in your SQL syntax|SQL syntax(?:.*near)?|SQL syntax error|Error Code: \d+|SQLSTATE\[[0-9A-Z]+\]:|MySQL server error|Unknown column '[^']+' in 'field list'|Table '[^']+'\.'[^']+' doesn't exist|Access denied for user '[^']+'@'[^']+'|MySQL server has gone away|Got error '.*' from storage engine|deadlock found when trying to get lock; try restarting transaction|Lock wait timeout exceeded; try restarting transaction|Cannot add or update a child row: a foreign key constraint fails|Incorrect integer value: '.*' for column '.*' at row \d+|Column count doesn't match value count at row \d+|Unknown table '[^']+'|no such column|Wrong number of columns|Unknown database '[^']+')
+(?i)(?:SQL syntax error|MySQL server error|SQL syntax|MariaDB error|1064|Error Code: \d+|You have an error in your SQL syntax|Syntax error)
+You have an error in your SQL syntax; check the manual
+SQL syntax near '.*' at line \d+
+Unknown column '.*' in 'field list'
+Table '.*\..*' doesn't exist
+Access denied for user '.*'@'.*' \(using password: .*\)
+#MSSQL
+(?i)(?:Microsoft SQL Server error|Unclosed quotation mark after the character string|Incorrect syntax near|Msg \d+|Error converting data type)
+Unclosed quotation mark after the character string
+Msg \d+, Level \d+, State \d+, Line \d+
+Incorrect syntax near '.+'
+Invalid object name '.+'
+String or binary data would be truncated
+#PostgreSQL
+(?i)(?:PostgreSQL error|syntax error at or near|ERROR: syntax error|relation does not exist|syntax error)
+ERROR:\s+syntax error at or near ".+"
+relation ".+" does not exist
+column ".+" does not exist
+ERROR:\s+permission denied for table ".+"
+FATAL:\s+role ".+" does not exist
+#Oracle
+(?i)(?:ORA-\d+|Oracle error|PL\/SQL: SQL Statement ignored|Error [-\d]+ at line|SQL command not properly ended)
+ORA-\d{5}:\s+.+?
+ORA-00942:\s+table or view does not exist
+ORA-00904:\s+invalid identifier
+ORA-00001:\s+unique constraint .+ violated
+ORA-\d{5}:\s+.*error.*at line \d+
+#SQLite
+(?i)(?:SQLite error|SQLiteException|near "[^"]+":\S+|syntax error)
+SQLite\/\d+\.\d+.*Error
+SQL error: no such table: .+
+unrecognized token: ".+"
+database is locked
+constraint failed: .+
+#MongoDB
+MongoError:\s+.+?
+failed to connect to server .* on first connect
+E11000 duplicate key error collection: .+ index: .+ dup key
+MongoServerError:\s+.+?
+Uncaught TypeError: Cannot read property '.*' of undefined\s+at
+#Cassandra
+InvalidRequest:\s+.*\n?
+NoHostAvailableException
+UnavailableException:\s+Not enough replicas
+ReadTimeout:\s+.*\n?
+com.datastax.driver.core.exceptions\.\w+Exception
+#Redis
+ERR unknown command '.*'
+WRONGTYPE Operation against a key holding the wrong kind of value
+LOADING Redis is loading the dataset in memory
+DENIED Redis is running in protected mode
+OOM command not allowed when used memory > '.*'
+#Couchbase
+CouchbaseException:\s+.+?
+Error\s+\d+:\s+.*Couchbase
+Bucket not found: .+
+Authentication failure for user .+
+Key not found in database
+#IBM DB2
+(?i)(?:DB2 SQL error|SQLCODE\s*=\s*[-\d]+|DB2 SQL Error|SQLSTATE\[[0-9A-Z]+\]|DB2\/SQL)
+SQLCODE\s*=\s*-\d+
+SQLSTATE\s*=\s*\w+
+DB2\s+SQL error:\s+SQLCODE
+SQL0803N:\s+duplicate key value
+SQL0206N:\s+.+ not defined in key list
+#Firebird
+Dynamic SQL Error
+- SQL error code = -\d+
+unsuccessful metadata update
+no such table or view
+violation of PRIMARY or UNIQUE KEY constraint
+#SQLite (extra)
+malformed database schema
+no such function: .+
+attempt to write a readonly database
+could not open database file
+constraint failed
+#Apache HTTPD
+AH\d{4}:\s+.*\s\(\S+\)
+client denied by server configuration: .+
+File does not exist: .+
+Premature end of script headers: .+
+request failed: error reading the headers
+#Nginx
+nginx: \[emerg\] .+ in \S+ on line \d+
+recv\(\) failed \(104: Connection reset by peer\)
+upstream timed out (110: Connection timed out) while reading response header from upstream
+client intended to send too large body
+no live upstreams
+#IIS/ASP.NET
+HTTP Error \d+\.\d+\s+-\s+.*\s-\s+There is a problem with the resource you are looking for
+Server Error in '/' Application\.
+System\.Web\.HttpException: .+
+Request validation has detected a potential security threat
+ASP\.NET runtime error: .+
+#ASP.NET (detailed)
+System\.NullReferenceException:\s+Object reference not set to an instance of an object
+System\.SqlClient\.SqlException:\s+.+? at line \d+
+ConfigurationErrorsException:\s+.*\n?-->\s+.*\n?
+The resource cannot be found.
+#Java (JVM/Tomcat/Spring)
+Exception in thread ".*" \S+: .+
+at \S+\.\w+\(.*:\d+\)
+Caused by:\s+\S+:\s+.+?
+java\.sql\.SQLException:\s+.+?
+java\.lang\.OutOfMemoryError: .+
+#Apache Tomcat
+SEVERE: Servlet\.init\(\) for servlet .+ threw
+SEVERE: Exception starting filter .+
+SEVERE: ContainerBase\.addChild: start: \S+ failed
+org\.apache\.catalina\.lifecycle\.LifecycleException: .+
+Address already in use: bind
+#Node.js/Express.js
+TypeError:\s+.* is not a function
+ReferenceError:\s+.* is not defined
+Error: listen EADDRINUSE: address already in use
+UnhandledPromiseRejectionWarning: .+
+SyntaxError: Unexpected token .+ in JSON at position \d+
+#Next.js/Nuxt.js (frontend framework)
+Error: getServerSideProps.*?failed
+Module not found: Can't resolve '.*'
+Invariant Violation: Element type is invalid
+TypeError: Cannot read property '.*' of undefined
+Error: ENOENT: no such file or directory, open '.*'
+#React / Angular / Vue (JS frameworks)
+Invariant Violation: Minified React error #\d+
+Uncaught TypeError: Cannot read property '.*' of undefined
+ERROR in \S+ Module build failed
+Deprecated lifecycle method: componentWillMount
+Unhandled Promise rejection: .+
+#JavaScript (browser/server)
+ReferenceError:\s+.+ is not defined
+TypeError:\s+.+ is not a function
+SyntaxError:\s+Unexpected token .+
+Uncaught RangeError: Maximum call stack size exceeded
+UnhandledPromiseRejectionWarning: .+
+#Python / Django / Flask
+Traceback \(most recent call last\):\s+(.|\n)+?
+\w+Error:\s+.+?
+django\.core\.exceptions\.\w+:\s+.+?
+werkzeug.exceptions\.\w+:\s+.+?
+ModuleNotFoundError:\s+No module named '.*'
+#Ruby / Rails
+\w+Error:\s+.+\n\s+from .+:\d+:in `.*'
+NoMethodError:\s+undefined method `.*' for .+
+ActiveRecord::StatementInvalid:\s+.+?
+ActionController::RoutingError:\s+No route matches
+uninitialized constant \w+
+#Perl
+Can't locate \S+ in @INC
+Undefined subroutine &\S+ called at \S+ line \d+
+Global symbol "\$\w+" requires explicit package name
+Premature end of script headers: \S+
+DBI\:\:st execute failed: .+
+#Golang
+panic: runtime error: .*$
+goroutine \d+ \[running\]:
+panic: .* at .*\.go:\d+
+invalid memory address or nil pointer dereference
+reflect\.Value\.Call: call of reflect\.Value\.Call on zero Value
+fatal error: unexpected signal during runtime execution
+#Express / Node (extra)
+Error: Cannot find module '.*'
+UnhandledPromiseRejectionWarning: Error: .+
+TypeError: Cannot read property '.*' of undefined
+Warning: Possible EventEmitter memory leak detected
+DeprecationWarning: .+
+#Laravel / PHP frameworks
+Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException
+Illuminate\\Database\\QueryException:\s+SQLSTATE\[[0-9A-Z]+\]:
+ErrorException:\s+file_put_contents\(.+\): failed to open stream
+Trying to get property '.*' of non-object
+TokenMismatchException:\s+CSRF token mismatch
+#Express.js / Next.js / Nuxt.js (server errors)
+Error: connect ECONNREFUSED .+
+Error: Request failed with status code \d+
+TypeError: Cannot read property '.*' of undefined
+ReferenceError: process is not defined
+#Cassandra / Redis / MongoDB (extra markers)
+com\.datastax\.driver\.core\.\w+Exception
+E11000 duplicate key error collection:.+
+WRONGTYPE Operation against a key holding the wrong kind of value
+NOAUTH Authentication required
+#Couchbase / CouchDB
+couchdb: \[error\] .+
+CouchbaseException:\s+.+?
+Map\/Reduce error: .+
+not_found: Document .+ not found
+#SQLite / Embedded DBs (extra)
+attempt to write a readonly database
+database disk image is malformed
+unable to open database file
+unable to open database: .+
+constraint failed
+#PHP SQL
+(?i)(?:Exception in thread|Traceback \(most recent call last\)|Fatal error:|PHP Fatal error:|Uncaught .*Exception|ORA-\d{5}|SQLSTATE\[[0-9A-Z]+\]|You have an error in your SQL syntax|panic: runtime error|TypeError:|ReferenceError:|Error: Cannot find module|Fatal:|ERROR:\s+syntax error at or near)
+#General JVM / Spring / Tomcat / Java stack traces
+(?i)(?:Exception in thread|Caused by:|at \S+\.\w+\(.*:\d+\)|java\.lang\.OutOfMemoryError|NoSuchMethodError|NoClassDefFoundError|SpringApplication\.run\(|Tomcat started on port)
+#Python / Django / Flask / WSGI combined markers
+(?i)(?:Traceback \(most recent call last\)|django\.core\.exceptions|werkzeug\.exceptions|wsgi\.errors|ModuleNotFoundError:|ImportError:|AttributeError:|'WSGI'|'Flask' error)
+#Node / NPM / V8 / Express runtime errors
+(?i)(?:UnhandledPromiseRejectionWarning|Unhandled Promise Rejection|SyntaxError: Unexpected token|ReferenceError:|RangeError: Maximum call stack size exceeded|Error: Cannot find module|npm ERR!|)
+#.NET / ASP.NET / IIS / C# exceptions
+(?i)(?:System\.NullReferenceException|System\.ArgumentException|RuntimeBinderException|Server Error in '\/' Application|HttpException:|StackTrace: at |is not defined in this context)
+#SQL / DB generic multi-vendor diagnostics
+(?i)(?:SQLSTATE\[[0-9A-Z]+\]:|ORA-\d{5}:|You have an error in your SQL syntax|syntax error at or near|Incorrect syntax near|SQLite\/\d+\.\d+|DB2 SQL error)
+#Web server / proxy / gateway errors (Nginx/Apache/IIS)
+(?i)(?:upstream timed out|client denied by server configuration|Premature end of script headers|AH\d{4}:|nginx: \[emerg\]|502 Bad Gateway|504 Gateway Time-out)
+#Memory / resource / timeout conditions (generic)
+(?i)(?:OutOfMemoryError|Allowed memory size of \d+ bytes exhausted|Maximum execution time of \d+ seconds exceeded|too many open files|connection timed out|Too many connections)
+
+Authentication
+#Security / auth / permission failures (authz/authn)
+(?i)(?:Access denied for user|permission denied|CSRF token mismatch|Invalid credentials|authentication failed)
+#Serialization / deserialization / format errors across languages
+(?i)(?:Unexpected end of input|UnmarshalException|Invalid JSON|JSONDecodeError|DeserializationException|Invalid or unexpected token|failed to deserialize)
+#Container / orchestration / networking runtime errors (Docker / Kubernetes / proxy)
+(?i)(?:CrashLoopBackOff|ImagePullBackOff|failed to start container|network is unreachable|connection refused|EADDRINUSE|no such host)
+#Failed login / invalid credentials
+(?i)(?:invalid credentials|incorrect username or password|authentication failed|login failed|bad credentials)
+#Account locked / too many attempts
+(?i)(?:account locked|too many login attempts|temporarily locked|maximum login attempts exceeded)
+#Invalid / expired token / signature
+(?i)(?:invalid token|token expired|signature verification failed|jwt.*expired|invalid or expired access token)
+#Missing or malformed Authorization header
+(?i)(?:missing authorization header|authorization header missing|malformed authorization|bearer token missing)
+#Session fixation / session hijack indicators
+(?i)(?:session fixation|session id mismatch|session token reused|invalid session token|session hijack)
+#CSRF token missing / invalid (auth overlap)
+(?i)(?:csrf token missing|csrf token invalid|token mismatch - CSRF|CSRF token validation failed)
+#Refresh token issues / reuse detected
+(?i)(?:refresh token (?:invalid|expired|reused|revoked)|refresh token reuse detected)
+#OAuth / consent / scope denied
+(?i)(?:insufficient scope|consent required|access_denied|invalid_scope|unauthorized_client)
+#Multi-factor / OTP failures
+(?i)(?:invalid otp|incorrect one[- ]time code|mfa required|two[- ]factor authentication failed)
+
+CSRF
+#CSRF cookie / token problems
+(?i)(?:csrf token missing|csrf validation failed|csrf token mismatch|invalid csrf)
+#Referer/origin mismatch (forgery)
+(?i)(?:invalid origin|referer header mismatch|origin not allowed|referrer not allowed)
+#Form tampering / unexpected method used
+(?i)(?:invalid request method|unexpected http method|method not allowed|form tampering detected)
+
+Rate Limiting
+#rate limit triggered
+#(?i)(?:too many requests|rate limit exceeded|429 Too Many Requests|request limit exceeded)
+#Quota exceeded / usage limits
+(?i)(?:quota exceeded|usage quota exceeded|monthly quota exceeded|limit reached for customer)
+#Abuse / suspicious automated traffic
+(?i)(?:suspicious activity detected|automated request blocked|bot detected|automation not allowed)
+#Throttling / backoff required
+(?i)(?:please slow down|try again later|throttled|request has been throttled)
+
+Account Privilige
+#Permission denied
+(?i)(?:permission denied|access denied|forbidden|not authorized to access|you do not have permission)
+#Role escalation / privilege change attempted
+(?i)(?:role escalation|insufficient privileges to change role|cannot assign role|unauthorized role change)
+#Account impersonation
+(?i)(?:impersonation attempt|act as user|become user failed|cannot impersonate)
+#Resource owner mismatch
+(?i)(?:not the owner of resource|owner mismatch|resource does not belong to you|ownership verification failed)
+#Cross-tenant or cross-account access
+(?i)(?:cross[- ]tenant access denied|cross[- ]account access|access across tenants is not allowed)
+
+Business Logic Flaws & Error Messages
+#Insufficient funds / balance errors
+(?i)(?:insufficient funds|balance too low|payment declined|account balance insufficient|insufficient balance)
+#Duplicate transaction
+(?i)(?:duplicate transaction|transaction already processed|idempotency key conflict|already paid)
+#Invalid coupon / discount / promo misuse
+(?i)(?:invalid coupon|coupon code not valid|discount code expired|promo code invalid)
+#Quantity / inventory / order logic errors
+(?i)(?:quantity exceeds stock|requested quantity not available|insufficient inventory|cannot order more than available)
+#Price manipulation / price mismatch validation
+(?i)(?:price mismatch|price changed|invalid price detected|unit price tampered)
+#Business rule violation / workflow step missing
+(?i)(?:business rule violation|operation not allowed in current state|invalid workflow state|action not permitted at this stage)
+#Idempotency / concurrency conflicts
+(?i)(?:conflict detected|concurrent modification|optimistic lock|version mismatch|resource has been modified)
+#Refund / chargeback / reversal errors
+(?i)(?:refund failed|chargeback|cannot refund|refund amount exceeds original)
+#Account verification / KYC / onboarding blockers
+(?i)(?:account verification required|kyc required|identity verification failed|document upload required)
+
+#Combined AUTH / Bussiness Logic (less FPs)
+(?i)(?:invalid credentials|authentication failed|token expired|jwt.*expired|missing authorization header|forbidden|CSRF token|quota exceeded|insufficient funds|duplicate transaction|transaction already processed|invalid coupon|quantity exceeds stock|price mismatch|business rule violation|conflict detected|optimistic lock|session token reused)
+
+Broken Access Control
+#privilege escalation attempts
+(?i)(?:role escalation|privilege escalation|cannot assign role|role change (?:failed|successful))
+#owner / resource ownership mismatch
+(?i)(?:resource does not belong to you|not the owner of resource|owner mismatch|ownership verification failed)
+#impersonation / act-as errors
+(?i)(?:impersonation attempt|cannot impersonate|attempted to act as user|act as user failed)
+#token / scope issues indicating authz checks
+(?i)(?:insufficient scope|invalid scope|permission scope missing|scope denied)
+#session fixation / reused session token indicators
+(?i)(?:session token reused|session id mismatch|session fixation|invalid session token)
+#anonymous/public access / unintended public exposure
+(?i)(?:anonymous access allowed|public access|container is public|resource is publicly accessible)
+#admin flag leaked in response (possible ACL leak)
+(?i)(?:\"is_admin\"\s*:\s*(?:true|1)|\"admin\"\s*:\s*(?:true|1)|\"role\"\s*:\s*\"admin\")
+#horizontal/vertical access failure messages
+(?i)(?:cannot access other user's|cannot access user \d+'s|you are not allowed to view that user|forbidden to access this record)
+#authorization header / missing auth hints
+(?i)(?:missing authorization header|authorization header missing|bearer token missing|authorization required)
+#ACL / policy / grant errors
+(?i)(?:policy denied|access policy prevents|acl denied|grant not allowed|policy violation)
+
+API
+#generic JSON error / message field (APIs)
+(?i)(?s)(?:"error"\s*:\s*"[^"]+"|"message"\s*:\s*"[^"]+")
+#OAuth / token grant / auth error tokens
+(?i)(?:invalid_grant|invalid_client|invalid_scope|access_denied|unsupported_grant_type)
+#invalid/expired API key / token messages
+(?i)(?:invalid api key|invalid key|api key invalid|invalid token|token expired|unauthorized client)
+#header-based rate-limit indicator (response headers)
+(?i)(?m)^x-?rate-?limit-remaining:\s*0\b
+#CORS misconfiguration detection (wide-open)
+(?i)(?m)^Access-Control-Allow-Origin:\s*\*\s*$
+#open API / Swagger exposure endpoints
+(?i)(?:swagger\.json|openapi\.json|api-docs|swagger-ui|openapi.json)
+#method not allowed / wrong HTTP verb (API misconfig)
+(?i)(?:Method Not Allowed|unsupported method|invalid http method)
+#missing required parameter / bad request messages
+(?i)(?:missing required parameter|required parameter missing|parameter .* required|bad request)
+#malformed JSON / parse errors from API
+(?i)(?:Malformed JSON|Invalid JSON|Unexpected token .+ in JSON at position|\bJSONDecodeError\b)
+#unsupported media type / content-type errors
+(?i)(?:Unsupported Media Type|415 Unsupported Media Type|content-type not supported|invalid content-type)
+#endpoint deprecated / removal warnings
+(?i)(?:deprecated endpoint|api deprecated|this endpoint is deprecated|use the v2 endpoint)
+#backend error / gateway timeout / upstream issues (APIs)
+(?i)(?:502 Bad Gateway|503 Service Unavailable|504 Gateway Time-out|upstream timed out|backend error)
+#idempotency / duplicate order / transaction API errors
+(?i)(?:idempotency key conflict|duplicate transaction|transaction already processed|duplicate request id)
+#schema/validation errors returned by API (JSON schema, validation)
+(?i)(?:validation failed|schema validation error|request validation failed|body does not match schema)
+
+#Combined BAC & API (less FPs)
+(?i)(?:permission denied|access denied|not authorized to access|owner mismatch|role escalation|session token reused|missing authorization header|is_admin|insufficient scope)
+(?i)(?s)(?:"error"\s*:|"message"\s*:|invalid_grant|invalid_scope|rate limit exceeded|x-?rate-?limit-remaining:\s*0|Access-Control-Allow-Origin:\s*\*|swagger\.json|Malformed JSON|idempotency key conflict)
+
