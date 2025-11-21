@@ -5,13 +5,11 @@ Forwarded-For:
 X-Remote-IP:
 X-Remote-Addr:
 X-ProxyUser-Ip:
-X-Original-URL:
 Client-IP:
 True-Client-IP:
 Cluster-Client-IP:
 X-ProxyUser-Ip:
 Host:
-X-Rewrite-URL:
 X-Forwarded-Host:
 X-Host:
 X-Forwarded-Server:
@@ -19,3 +17,8 @@ X-HTTP-Host-Override:
 Forwarded:
 Via:
 Origin:
+X-Rewrite-URL:
+X-Original-URL:
+X-HTTP-Method-Override:
+X-HTTP-Method:
+X-Method-Override:
